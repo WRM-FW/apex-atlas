@@ -64,8 +64,8 @@ jobs:
         with:
           path: dist
 
-  # main 分支 → 正式发布；Pull Request → 自动生成临时预览地址。
-  # 人工审核发生在合并 PR 这一步：不合并就不会上线。
+  # 只有 main 会写生产地址；Pull Request 用 preview 模式生成临时预览地址，
+  # 不会改动 https://wrm-fw.github.io/apex-atlas/ —— 人工审核闸门由此保证。
   deploy:
     needs: build
     if: needs.build.result == 'success'
@@ -76,3 +76,5 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          preview: ${{ github.ref != 'refs/heads/main' }}
