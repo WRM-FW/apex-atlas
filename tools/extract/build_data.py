@@ -86,7 +86,7 @@ for tid, t in CONTENT.items():
         map=dict(file='assets/maps/%s.webp' % tid, thumb='assets/maps/%s_thumb.webp' % tid,
                  w=geo['w'], h=geo['h']),
     )
-    json.dump(out, open(os.path.join(SITE, 'data', 'tracks', tid + '.json'), 'w'),
+    json.dump(out, open(os.path.join(SITE, 'data', 'tracks', tid + '.json'), 'w', newline='\n'),
               ensure_ascii=False, indent=1)
     index.append(dict(id=tid, round=t['round'], name_zh=t['zh'], name_en=t['en'],
                       circuit_zh=t['circuit_zh'], circuit_en=t['circuit_en'], country=t['country'],
@@ -101,7 +101,8 @@ season = dict(
     season=S.SEASON, rules=S.RULES, archetypes=S.ARCHETYPES, map_legend=S.MAP_LEGEND,
     watch_tips=S.WATCH_TIPS, glossary=S.GLOSSARY, data_sources=S.DATA_SOURCES, tracks=index,
 )
-json.dump(season, open(os.path.join(SITE, 'data', 'season.json'), 'w'), ensure_ascii=False, indent=1)
+json.dump(season, open(os.path.join(SITE, 'data', 'season.json'), 'w', newline='\n'),
+          ensure_ascii=False, indent=1)
 
 print('tracks written: %d' % len(index))
 for w in warnings:
