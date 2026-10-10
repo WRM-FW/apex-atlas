@@ -1,0 +1,959 @@
+{
+ "season": {
+  "year": 2026,
+  "title": "2026 赛季 F1 赛道手册",
+  "subtitle": "面向新手的赛道布局、弯角与赛段解读",
+  "rounds": 23,
+  "sprints": 6,
+  "continents": "亚洲 / 欧洲 / 北美洲 / 南美洲 / 大洋洲 / 非洲",
+  "intro": "2026 是 F1 规则大改的一年：电机的功率几乎翻倍、尾翼不再单独工作、赛车变得更小更轻。这一赛季共有 23 场大奖赛（其中 6 站含冲刺赛），赛道从 3.3 公里的摩纳哥一直排到 7 公里的斯帕。本手册用官方赛道地图作为主线，帮你把每张图看懂。",
+  "note": "数据与弯角编号来源见“数据说明”页。"
+ },
+ "rules": [
+  {
+   "id": "active-aero",
+   "title": "主动空气动力学：弯道模式与直道模式",
+   "short": "前后翼联动切换高下压力与低阻力两种姿态",
+   "body": "2026 年赛车不再只有一个会打开的尾翼（DRS），而是前翼和尾翼联动，在两种姿态之间自动切换：进弯刹车前立起翼片换取更高下压力（弯道模式 Corner Mode），出弯回正后放平翼片降低阻力（直道模式 Straightline Mode）。除摩纳哥外，本赛季所有赛道都设有直道模式触发段。对观众来说，看点是车载镜头里翼片立起与放平的时机是否干净——这直接反映车队的线控空气动力学软件成熟度。"
+  },
+  {
+   "id": "power-unit",
+   "title": "动力单元：电机功率几乎翻倍",
+   "short": "MGU-K 达 350kW，内燃机降到约 540bhp",
+   "body": "全新动力单元把内燃机输出降到约 540bhp，同时把电机（MGU-K）输出提升到 350kW（约 470bhp），两者接近五五开，并且完全取消了 MGU-H。这意味着赛车在直道上必须精细管理电池输出：电池在前半段放电磁线，后半段就会明显掉速，这个现象被称为“超剪辑（Clipping）”。"
+  },
+  {
+   "id": "overtake-mode",
+   "title": "超车模式：取代传统 DRS",
+   "short": "后车跟在前车 1 秒内可获得额外电能超频",
+   "body": "超车模式（Overtake Mode）不再改变尾翼几何，而是给进攻方额外的电池能量超频释放。触发条件是后车与前车差距在 1 秒以内。地图上通常用两个标记表示：检测点（判断是否满足条件）与激活点（开始生效）。于是发卡弯前和大直道上会出现“电池互搏”——防守方也要留电才能守住。"
+  },
+  {
+   "id": "chassis",
+   "title": "更紧凑敏捷的底盘",
+   "short": "轴距 3400mm、车宽 1900mm、减重 30kg",
+   "body": "2026 赛车轴距缩短到 3400mm，车宽收窄到 1900mm，最低车重减少 30kg。更小的车身在摩纳哥、新加坡、亨格罗宁这类低速狭窄赛道上弯心灵活度明显提升，变向响应更敏锐；代价是高速弯里的稳定性更难做。"
+  },
+  {
+   "id": "energy",
+   "title": "能量管理：为什么直道尾速会突然掉",
+   "short": "抬油滑行是为了省电，不是为了慢",
+   "body": "电池在长直道上全功率放电只能维持很短时间。所以在巴库、斯帕、上海这类大直道，车手会在直道中后段提前松油门滑行（Lift and Coast）来省电，否则直道末端会出现电驱切断与失速，很容易被后车的超车模式翻盘。转播里的电池百分比曲线，是 2026 年最值得一盯的数据。"
+  }
+ ],
+ "archetypes": [
+  {
+   "id": "speed-temple",
+   "zh": "极速殿堂型",
+   "en": "Low Downforce / Top-Speed Temples",
+   "desc": "拥有极长的全油门冲刺路段，采用最低级别下压力配置。2026 年的直道模式与超车模式在这里价值最大，但也最考验动力单元的防超剪辑电量储备。",
+   "tracks": [
+    "monza",
+    "las-vegas",
+    "baku",
+    "spa",
+    "jeddah"
+   ]
+  },
+  {
+   "id": "high-downforce",
+   "zh": "高下压力流动型",
+   "en": "High Downforce / Aero Flow & High Lateral G",
+   "desc": "密集的中高速连续弯道，赛车持续承受 4G 到 5.2G 的横向离心力，高度依赖弯道模式下的底盘吸地能力与前翼气流导向。",
+   "tracks": [
+    "silverstone",
+    "suzuka",
+    "zandvoort",
+    "lusail",
+    "barcelona",
+    "cota",
+    "interlagos"
+   ]
+  },
+  {
+   "id": "stop-and-go",
+   "zh": "重刹牵引型",
+   "en": "Stop-and-Go / Heavy Braking & Traction",
+   "desc": "大直道与急发卡弯交替出现，刹车盘面临超过 1000°C 的热负荷，同时为 350kW 电机提供全季最充沛的动能回收。",
+   "tracks": [
+    "montreal",
+    "red-bull-ring",
+    "shanghai",
+    "albert-park",
+    "sepang",
+    "yas-marina"
+   ]
+  },
+  {
+   "id": "street-precision",
+   "zh": "狭窄街道技巧型",
+   "en": "Tight Street Circuits / Precision & Mechanical Grip",
+   "desc": "路面附着力低、护墙压迫感强、弯角密集且多为直角，极度依赖悬挂机械抓地力与低档位出弯牵引力控制。",
+   "tracks": [
+    "monaco",
+    "marina-bay",
+    "miami",
+    "madring",
+    "rodriguez",
+    "hungaroring"
+   ]
+  }
+ ],
+ "map_legend": [
+  {
+   "item": "赛段配色（中线）",
+   "text": "赛道中间那条彩色线把一圈分成三段（Sector 1/2/3），计时系统按这三段分别记录时间。本手册统一使用：赛段 1 = 品红，赛段 2 = 黄，赛段 3 = 蓝。注意：地图上的配色分界与官方技术指南的“第几弯到第几弯”偶有一两个弯角的出入，站内文字说明以技术指南的弯角区间为准。"
+  },
+  {
+   "item": "圆圈里的数字",
+   "text": "弯角编号，按行驶顺序从 1 开始。带字母后缀（如 5A、20A）表示两个弯之间新加的弯角，不改变后面的编号。点击地图上的弯角即可查看该弯解析。"
+  },
+  {
+   "item": "红色虚线段",
+   "text": "直道模式（Straightline Mode）触发段：赛车在这段把前后翼放平，用最低阻力换取更高尾速。"
+  },
+  {
+   "item": "绿色圆点（两点一组）",
+   "text": "超车模式（取代 DRS）的检测点与激活点：通过检测点时若与前车差距小于 1 秒，后车从激活点起获得额外电功率。"
+  },
+  {
+   "item": "黄色圆点 + SPEED TRAP",
+   "text": "测速点，通常放在主直道末端，用来记录单圈最高车速。"
+  },
+  {
+   "item": "黑白方格",
+   "text": "起终点线（同时是发车格位置），一圈从这里开始也在这里结束。"
+  }
+ ],
+ "watch_tips": [
+  {
+   "title": "盯住电池百分比与直道尾速",
+   "text": "转播遥测里的电池储备（State of Charge）是 2026 年最重要的新读数。如果前车在直道前半段猛烈防守，它的电能在最后 200 米可能已经耗竭，此时后车开启超车模式会形成很大的瞬时速度差。"
+  },
+  {
+   "title": "观察前后翼的联动姿态",
+   "text": "车载镜头里，进弯刹车瞬间前翼与尾翼襟翼同时立起（弯道模式），大油门出弯后翼片顺畅放平（直道模式）。切换时机是否干净，是衡量各车队线控空气动力学软件成熟度的风向标。"
+  },
+  {
+   "title": "看排位赛设定与正赛保胎的折中",
+   "text": "2026 赛车更紧凑敏捷，但在银石、铃鹿这类高下压力连续弯追求极致过弯速度，会给轮胎造成不可逆的横向热衰减。正赛里能把单圈退化率（Degradation Delta）压得更平的车队，才有资格争冠军。"
+  }
+ ],
+ "glossary": [
+  {
+   "term": "弯心 / 顶点",
+   "en": "Apex",
+   "cat": "弯道",
+   "text": "赛车切过弯道最靠内侧的几何或动力学切点，分为几何顶点与延迟顶点（Late Apex，利于提早开油出弯）。"
+  },
+  {
+   "term": "循迹制动",
+   "en": "Trail Braking",
+   "cat": "驾驶",
+   "text": "车手在切入弯心过程中逐渐释放刹车踏板的高阶技巧，用车头前移的载荷提升前轮抓地力，减少入弯推头。"
+  },
+  {
+   "term": "抬油滑行",
+   "en": "Lift and Coast",
+   "cat": "能量",
+   "text": "进入刹车区前提前松开油门靠滑行减速，用于控制刹车盘温度、节省燃油并为电池充电。"
+  },
+  {
+   "term": "倾斜弯道",
+   "en": "Banked Turn",
+   "cat": "赛道",
+   "text": "路面有明显横向内倾角度（如赞德弗尔特 T3 与 T14），利用重力分力提供额外向心力，大幅提升过弯速度。"
+  },
+  {
+   "term": "脏空气效应",
+   "en": "Dirty Air",
+   "cat": "空气动力学",
+   "text": "前车尾部产生的乱流与低压区，后车跟太近时下压力锐减、轮胎过热。2026 新规旨在进一步削弱这种干扰。"
+  },
+  {
+   "term": "海豚跳效应",
+   "en": "Porpoising",
+   "cat": "空气动力学",
+   "text": "地面效应赛车在高速直道上因底盘离地间隙被压缩、气流失速而引发的周期性上下剧烈弹跳。"
+  },
+  {
+   "term": "胎胶颗粒 / 胎垢",
+   "en": "Marbles",
+   "cat": "轮胎",
+   "text": "轮胎磨损后脱落并堆积在理想行车线外侧的橡胶碎屑，赛车压上会瞬间丧失抓地力。"
+  },
+  {
+   "term": "轮胎起泡 / 剥离",
+   "en": "Blistering / Graining",
+   "cat": "轮胎",
+   "text": "轮胎内部过热导致橡胶起泡脱落（Blistering），或低温撕扯导致表面橡胶卷曲成粒（Graining）。"
+  },
+  {
+   "term": "进站翻盘",
+   "en": "Undercut / Overcut",
+   "cat": "策略",
+   "text": "Undercut 是提早进站换新胎刷极速实现超越；Overcut 是延迟进站，利用前车出站后的拥堵窗口拉开差距。"
+  },
+  {
+   "term": "封闭区规则",
+   "en": "Parc Fermé",
+   "cat": "规则",
+   "text": "排位赛开始后赛车进入国际汽联严格监管状态，禁止车队随意改动主要悬挂几何与底盘机械调校。"
+  },
+  {
+   "term": "超剪辑",
+   "en": "Clipping / Super Clipping",
+   "cat": "能量",
+   "text": "电池电量耗尽后电驱被切断、车速明显下降的现象。在长直道赛道尤其致命，是 2026 年能量管理的核心风险。"
+  },
+  {
+   "term": "弯道模式 / 直道模式",
+   "en": "Corner Mode / Straightline Mode",
+   "cat": "空气动力学",
+   "text": "2026 主动空气动力学的两种姿态：前者翼片立起换下压力，后者翼片放平换低阻力。"
+  },
+  {
+   "term": "超车模式",
+   "en": "Overtake Mode",
+   "cat": "规则",
+   "text": "取代 DRS 的攻防机制：后车与前车差距在 1 秒内时可获得额外电机功率释放。"
+  },
+  {
+   "term": "赛段",
+   "en": "Sector",
+   "cat": "赛道",
+   "text": "一圈被切成三段分别计时，用来判断车手在每一段的相对快慢，也是分析调校取舍的基本单位。"
+  },
+  {
+   "term": "全油门比例",
+   "en": "Throttle Percentage",
+   "cat": "数据",
+   "text": "一圈内油门完全踩下的时间占比。比例高说明赛道以直道和高速弯为主，低说明弯角密集、车速上不去。"
+  },
+  {
+   "term": "下压力",
+   "en": "Downforce",
+   "cat": "数据",
+   "text": "空气动力把赛车“压”向地面的力。下压力越高弯道越快，但直道阻力也越大，所以每条赛道都要取舍。"
+  }
+ ],
+ "data_sources": {
+  "updated": "2026-10-10",
+  "items": [
+   {
+    "src": "2026 赛季 F1 全赛道技术指南与分站巡礼手册（PDF，14 页）",
+    "used": "赛历（站次/日期/长度/圈数/冲刺赛）、赛道规格（弯角数、圈速纪录、下压力、全油门比例、制动负荷、轮胎磨损）、三大赛段技术拆解、2026 新规说明、四大流派分类、术语速查表。"
+   },
+   {
+    "src": "24 张 2026 赛季官方风格赛道地图（PNG）",
+    "used": "赛道布局图片、弯角编号与位置（站点内可点击热点）、赛段配色、直道模式段、超车模式点、测速点位置。"
+   }
+  ],
+  "notes": [
+   "弯角热点坐标由脚本从地图中自动识别（数字气泡定位），并逐条与地图人工核对编号连续性（每站均为 1..N 完整序列）。",
+   "技术指南收录 23 站；你提供的地图共 24 张，多出的 05 沙特吉达按普通赛道收录，其规格与解析基于赛道公开资料与地图赛段配色，指南未提供数据章节，圈速纪录因此留空。",
+   "马德里 Madring 在指南中记为“20 弯（规划设计）”，而地图实际编号到 22 并含 5A、20A 两个附加弯角；站内以地图编号为准，规格表同时标注指南口径。",
+   "巴林大奖赛按指南说明由马来西亚雪邦赛道异地承办，因此站次 R16 对应雪邦地图。",
+   "地图上赛段配色的分界与指南文字给出的“第几弯到第几弯”偶有一两个弯角出入（例如墨尔本 T10、上海 T11），文字说明以指南区间为准，图片配色保持原图。",
+   "本手册为赛道认知用途，不含实时成绩、博彩或官方授权数据。"
+  ]
+ },
+ "tracks": [
+  {
+   "id": "albert-park",
+   "round": "R01",
+   "name_zh": "澳大利亚大奖赛",
+   "name_en": "Australian Grand Prix",
+   "circuit_zh": "阿尔伯特公园赛道",
+   "circuit_en": "Albert Park Circuit",
+   "country": "澳大利亚",
+   "city": "墨尔本",
+   "flag": "🇦🇺",
+   "dates": "3月06-08日",
+   "sprint": false,
+   "length_km": 5.278,
+   "laps": 58,
+   "corners_total": 14,
+   "archetype": "stop-and-go",
+   "kind": "公园半永久赛道",
+   "thumb": "assets/maps/albert-park_thumb.webp",
+   "throttle_pct": 72,
+   "downforce": [
+    "中高",
+    4
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "墨尔本是很多赛季的开场站，也是一条“不像街道赛的街道赛”：赛道围绕阿尔伯特湖展开，大部分路面是专用赛道，只有几段借用公园道路。"
+  },
+  {
+   "id": "shanghai",
+   "round": "R02",
+   "name_zh": "中国大奖赛",
+   "name_en": "Chinese Grand Prix",
+   "circuit_zh": "上海国际赛车场",
+   "circuit_en": "Shanghai International Circuit",
+   "country": "中国",
+   "city": "上海",
+   "flag": "🇨🇳",
+   "dates": "3月13-15日",
+   "sprint": true,
+   "length_km": 5.451,
+   "laps": 56,
+   "corners_total": 16,
+   "archetype": "stop-and-go",
+   "kind": "专用赛道（冲刺赛站）",
+   "thumb": "assets/maps/shanghai_thumb.webp",
+   "throttle_pct": 58,
+   "downforce": [
+    "中高",
+    4
+   ],
+   "braking": [
+    "极重",
+    5
+   ],
+   "intro_short": "上海是一条“前段磨车、后段拼直线”的赛道。"
+  },
+  {
+   "id": "suzuka",
+   "round": "R03",
+   "name_zh": "日本大奖赛",
+   "name_en": "Japanese Grand Prix",
+   "circuit_zh": "铃鹿国际赛车场",
+   "circuit_en": "Suzuka International Racing Course",
+   "country": "日本",
+   "city": "铃鹿",
+   "flag": "🇯🇵",
+   "dates": "3月27-29日",
+   "sprint": false,
+   "length_km": 5.807,
+   "laps": 53,
+   "corners_total": 18,
+   "archetype": "high-downforce",
+   "kind": "专用赛道（8 字形）",
+   "thumb": "assets/maps/suzuka_thumb.webp",
+   "throttle_pct": 67,
+   "downforce": [
+    "高",
+    5
+   ],
+   "braking": [
+    "中等",
+    3
+   ],
+   "intro_short": "铃鹿是少数由设计师而不是地形“造出来”的赛道，也是全世界唯一跑 F1 的 8 字形布局。"
+  },
+  {
+   "id": "miami",
+   "round": "R04",
+   "name_zh": "迈阿密大奖赛",
+   "name_en": "Miami Grand Prix",
+   "circuit_zh": "迈阿密国际赛道",
+   "circuit_en": "Miami International Autodrome",
+   "country": "美国",
+   "city": "迈阿密",
+   "flag": "🇺🇸",
+   "dates": "5月01-03日",
+   "sprint": true,
+   "length_km": 5.412,
+   "laps": 57,
+   "corners_total": 19,
+   "archetype": "street-precision",
+   "kind": "体育场周边混合赛道（冲刺赛站）",
+   "thumb": "assets/maps/miami_thumb.webp",
+   "throttle_pct": 60,
+   "downforce": [
+    "中等",
+    3
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "迈阿密围绕硬石体育场而建，赛道里塞进了模仿银石和斯帕的高速段，也塞进了高速公路桥下的狭窄迷宫。"
+  },
+  {
+   "id": "montreal",
+   "round": "R05",
+   "name_zh": "加拿大大奖赛",
+   "name_en": "Canadian Grand Prix",
+   "circuit_zh": "吉尔·维伦纽夫赛道",
+   "circuit_en": "Circuit Gilles Villeneuve",
+   "country": "加拿大",
+   "city": "蒙特利尔",
+   "flag": "🇨🇦",
+   "dates": "5月22-24日",
+   "sprint": true,
+   "length_km": 4.361,
+   "laps": 70,
+   "corners_total": 14,
+   "archetype": "stop-and-go",
+   "kind": "半永久街道赛道（冲刺赛站）",
+   "thumb": "assets/maps/montreal_thumb.webp",
+   "throttle_pct": 74,
+   "downforce": [
+    "低",
+    2
+   ],
+   "braking": [
+    "极重",
+    5
+   ],
+   "intro_short": "蒙特利尔是典型的“冲刺—重刹”赛道：直道、慢弯、再直道，一圈要刹十几次极限刹车。"
+  },
+  {
+   "id": "monaco",
+   "round": "R06",
+   "name_zh": "摩纳哥大奖赛",
+   "name_en": "Monaco Grand Prix",
+   "circuit_zh": "蒙特卡洛市街赛道",
+   "circuit_en": "Circuit de Monaco",
+   "country": "摩纳哥",
+   "city": "蒙特卡洛",
+   "flag": "🇲🇨",
+   "dates": "6月05-07日",
+   "sprint": false,
+   "length_km": 3.337,
+   "laps": 78,
+   "corners_total": 19,
+   "archetype": "street-precision",
+   "kind": "街道赛道",
+   "thumb": "assets/maps/monaco_thumb.webp",
+   "throttle_pct": 35,
+   "downforce": [
+    "最大",
+    5
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "摩纳哥是全年最短、最慢、也最不容许犯错的赛道。"
+  },
+  {
+   "id": "barcelona",
+   "round": "R07",
+   "name_zh": "加泰罗尼亚大奖赛",
+   "name_en": "Catalan Grand Prix",
+   "circuit_zh": "加泰罗尼亚赛道",
+   "circuit_en": "Circuit de Barcelona-Catalunya",
+   "country": "西班牙",
+   "city": "巴塞罗那",
+   "flag": "🇪🇸",
+   "dates": "6月12-14日",
+   "sprint": false,
+   "length_km": 4.657,
+   "laps": 66,
+   "corners_total": 14,
+   "archetype": "high-downforce",
+   "kind": "专用赛道",
+   "thumb": "assets/maps/barcelona_thumb.webp",
+   "throttle_pct": 66,
+   "downforce": [
+    "高",
+    4
+   ],
+   "braking": [
+    "中等",
+    3
+   ],
+   "intro_short": "加泰罗尼亚是 F1 的“基准线”赛道：过去十几年几乎所有测试都在这里跑，因为它的高速弯、中速弯和上坡段分布均衡，任何一辆车的平衡好坏在这里都藏不住。"
+  },
+  {
+   "id": "red-bull-ring",
+   "round": "R08",
+   "name_zh": "奥地利大奖赛",
+   "name_en": "Austrian Grand Prix",
+   "circuit_zh": "红牛环赛道",
+   "circuit_en": "Red Bull Ring, Spielberg",
+   "country": "奥地利",
+   "city": "施皮尔贝格",
+   "flag": "🇦🇹",
+   "dates": "6月26-28日",
+   "sprint": false,
+   "length_km": 4.318,
+   "laps": 71,
+   "corners_total": 10,
+   "archetype": "stop-and-go",
+   "kind": "专用赛道（短圈）",
+   "thumb": "assets/maps/red-bull-ring_thumb.webp",
+   "throttle_pct": 77,
+   "downforce": [
+    "中低",
+    2
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "红牛环只有 10 个弯、单圈约 64 秒，是全年最快节奏的赛道之一。"
+  },
+  {
+   "id": "silverstone",
+   "round": "R09",
+   "name_zh": "英国大奖赛",
+   "name_en": "British Grand Prix",
+   "circuit_zh": "银石赛道",
+   "circuit_en": "Silverstone Circuit",
+   "country": "英国",
+   "city": "银石",
+   "flag": "🇬🇧",
+   "dates": "7月03-05日",
+   "sprint": true,
+   "length_km": 5.891,
+   "laps": 52,
+   "corners_total": 18,
+   "archetype": "high-downforce",
+   "kind": "专用赛道（高速）",
+   "thumb": "assets/maps/silverstone_thumb.webp",
+   "throttle_pct": 70,
+   "downforce": [
+    "极高",
+    5
+   ],
+   "braking": [
+    "中等",
+    2
+   ],
+   "intro_short": "银石是 F1 的发源地，也是全年对下压力和车手体能要求最高的赛道之一。"
+  },
+  {
+   "id": "spa",
+   "round": "R10",
+   "name_zh": "比利时大奖赛",
+   "name_en": "Belgian Grand Prix",
+   "circuit_zh": "斯帕-弗朗科尔尚赛道",
+   "circuit_en": "Circuit de Spa-Francorchamps",
+   "country": "比利时",
+   "city": "斯塔沃洛",
+   "flag": "🇧🇪",
+   "dates": "7月17-19日",
+   "sprint": false,
+   "length_km": 7.004,
+   "laps": 44,
+   "corners_total": 19,
+   "archetype": "speed-temple",
+   "kind": "专用赛道（最长）",
+   "thumb": "assets/maps/spa_thumb.webp",
+   "throttle_pct": 71,
+   "downforce": [
+    "中等",
+    3
+   ],
+   "braking": [
+    "中等",
+    3
+   ],
+   "intro_short": "斯帕是赛历上最长的赛道（7 公里），也是最著名的一条：艾尔罗格-拉迪隆上坡盲弯几乎是 F1 的象征。"
+  },
+  {
+   "id": "hungaroring",
+   "round": "R11",
+   "name_zh": "匈牙利大奖赛",
+   "name_en": "Hungarian Grand Prix",
+   "circuit_zh": "亨格罗宁赛道",
+   "circuit_en": "Hungaroring",
+   "country": "匈牙利",
+   "city": "布达佩斯",
+   "flag": "🇭🇺",
+   "dates": "7月24-26日",
+   "sprint": false,
+   "length_km": 4.381,
+   "laps": 70,
+   "corners_total": 14,
+   "archetype": "street-precision",
+   "kind": "专用赛道（低速多弯）",
+   "thumb": "assets/maps/hungaroring_thumb.webp",
+   "throttle_pct": 55,
+   "downforce": [
+    "极高",
+    5
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "亨格罗宁常被称为“没有护栏的摩纳哥”：弯角密集、几乎没有真正的直道，全油门比例只有 55%，是全年最考验下压力和车手耐心的赛道之一。"
+  },
+  {
+   "id": "zandvoort",
+   "round": "R12",
+   "name_zh": "荷兰大奖赛",
+   "name_en": "Dutch Grand Prix",
+   "circuit_zh": "赞德弗尔特赛道",
+   "circuit_en": "Circuit Zandvoort",
+   "country": "荷兰",
+   "city": "赞德弗尔特",
+   "flag": "🇳🇱",
+   "dates": "8月21-23日",
+   "sprint": true,
+   "length_km": 4.259,
+   "laps": 72,
+   "corners_total": 14,
+   "archetype": "high-downforce",
+   "kind": "专用赛道（倾斜弯道）",
+   "thumb": "assets/maps/zandvoort_thumb.webp",
+   "throttle_pct": 65,
+   "downforce": [
+    "高",
+    4
+   ],
+   "braking": [
+    "中等",
+    3
+   ],
+   "intro_short": "赞德弗尔特藏在北海沙丘之间，最大的特点是两个大倾角碗状弯（19 度和 18 度）。"
+  },
+  {
+   "id": "monza",
+   "round": "R13",
+   "name_zh": "意大利大奖赛",
+   "name_en": "Italian Grand Prix",
+   "circuit_zh": "蒙扎国家赛车场",
+   "circuit_en": "Autodromo Nazionale Monza",
+   "country": "意大利",
+   "city": "蒙扎",
+   "flag": "🇮🇹",
+   "dates": "9月04-06日",
+   "sprint": false,
+   "length_km": 5.793,
+   "laps": 53,
+   "corners_total": 11,
+   "archetype": "speed-temple",
+   "kind": "专用赛道（速度圣殿）",
+   "thumb": "assets/maps/monza_thumb.webp",
+   "throttle_pct": 80,
+   "downforce": [
+    "最低",
+    1
+   ],
+   "braking": [
+    "极重",
+    5
+   ],
+   "intro_short": "蒙扎是“速度圣殿”：全年油门比例最高（约 80%）、下压力最低、刹车最狠。"
+  },
+  {
+   "id": "madring",
+   "round": "R14",
+   "name_zh": "西班牙大奖赛",
+   "name_en": "Spanish Grand Prix",
+   "circuit_zh": "马德里 IFEMA 市街赛道（Madring）",
+   "circuit_en": "Madring, Madrid IFEMA Street Circuit",
+   "country": "西班牙",
+   "city": "马德里",
+   "flag": "🇪🇸",
+   "dates": "9月11-13日",
+   "sprint": false,
+   "length_km": 5.474,
+   "laps": 56,
+   "corners_total": 24,
+   "archetype": "street-precision",
+   "kind": "新建市街赛道（赛季首秀）",
+   "thumb": "assets/maps/madring_thumb.webp",
+   "throttle_pct": 62,
+   "downforce": [
+    "中等",
+    3
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "2026 年西班牙大奖赛移师马德里，围绕 IFEMA 国际会展中心的新建市街赛道是本赛季最大的未知数。"
+  },
+  {
+   "id": "baku",
+   "round": "R15",
+   "name_zh": "阿塞拜疆大奖赛",
+   "name_en": "Azerbaijan Grand Prix",
+   "circuit_zh": "巴库城市赛道",
+   "circuit_en": "Baku City Circuit",
+   "country": "阿塞拜疆",
+   "city": "巴库",
+   "flag": "🇦🇿",
+   "dates": "9月24-26日",
+   "sprint": false,
+   "length_km": 6.003,
+   "laps": 51,
+   "corners_total": 20,
+   "archetype": "speed-temple",
+   "kind": "街道赛道（矛盾之王）",
+   "thumb": "assets/maps/baku_thumb.webp",
+   "throttle_pct": 66,
+   "downforce": [
+    "低",
+    2
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "巴库是 F1 里最矛盾的赛道：一边是全世界最窄的古城墙段（最窄处只有 7.6 米），另一边是 2.2 公里的全油门长直道。"
+  },
+  {
+   "id": "sepang",
+   "round": "R16",
+   "name_zh": "巴林大奖赛（雪邦承办）",
+   "name_en": "Bahrain GP (Sepang)",
+   "circuit_zh": "雪邦国际赛车场",
+   "circuit_en": "Sepang International Circuit",
+   "country": "马来西亚",
+   "city": "雪邦",
+   "flag": "🇲🇾",
+   "dates": "10月02-04日",
+   "sprint": false,
+   "length_km": 5.543,
+   "laps": 56,
+   "corners_total": 15,
+   "archetype": "stop-and-go",
+   "kind": "专用赛道（异地承办）",
+   "thumb": "assets/maps/sepang_thumb.webp",
+   "throttle_pct": 65,
+   "downforce": [
+    "中高",
+    4
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "按 2026 赛季指南，原定巴林站因地区局势改到马来西亚雪邦承办。"
+  },
+  {
+   "id": "marina-bay",
+   "round": "R17",
+   "name_zh": "新加坡大奖赛",
+   "name_en": "Singapore Grand Prix",
+   "circuit_zh": "滨海湾市街赛道",
+   "circuit_en": "Marina Bay Street Circuit",
+   "country": "新加坡",
+   "city": "滨海湾",
+   "flag": "🇸🇬",
+   "dates": "10月09-11日",
+   "sprint": true,
+   "length_km": 4.94,
+   "laps": 62,
+   "corners_total": 19,
+   "archetype": "street-precision",
+   "kind": "夜间街道赛道（冲刺赛站）",
+   "thumb": "assets/maps/marina-bay_thumb.webp",
+   "throttle_pct": 50,
+   "downforce": [
+    "极高",
+    5
+   ],
+   "braking": [
+    "极重",
+    5
+   ],
+   "intro_short": "新加坡是 F1 第一场夜间比赛，也是全年体力消耗最大的分站：高温高湿、路面颠簸、弯角密集且刹车极重。"
+  },
+  {
+   "id": "cota",
+   "round": "R18",
+   "name_zh": "美国大奖赛",
+   "name_en": "United States Grand Prix",
+   "circuit_zh": "美洲赛道（COTA）",
+   "circuit_en": "Circuit of the Americas",
+   "country": "美国",
+   "city": "奥斯汀",
+   "flag": "🇺🇸",
+   "dates": "10月23-25日",
+   "sprint": false,
+   "length_km": 5.513,
+   "laps": 56,
+   "corners_total": 20,
+   "archetype": "high-downforce",
+   "kind": "专用赛道（起伏地形）",
+   "thumb": "assets/maps/cota_thumb.webp",
+   "throttle_pct": 62,
+   "downforce": [
+    "中高",
+    4
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "COTA 是把世界经典弯角“抄”在一起的赛道：开头模仿银石的高速 S 弯，中段有土耳其式的多顶点长弯，第一弯则是全赛季最陡的上坡发卡。"
+  },
+  {
+   "id": "rodriguez",
+   "round": "R19",
+   "name_zh": "墨西哥城大奖赛",
+   "name_en": "Mexico City Grand Prix",
+   "circuit_zh": "罗德里格斯兄弟赛车场",
+   "circuit_en": "Autódromo Hermanos Rodríguez",
+   "country": "墨西哥",
+   "city": "墨西哥城",
+   "flag": "🇲🇽",
+   "dates": "10月30-11月01日",
+   "sprint": false,
+   "length_km": 4.304,
+   "laps": 71,
+   "corners_total": 17,
+   "archetype": "street-precision",
+   "kind": "专用赛道（高海拔）",
+   "thumb": "assets/maps/rodriguez_thumb.webp",
+   "throttle_pct": 54,
+   "downforce": [
+    "最大",
+    5
+   ],
+   "braking": [
+    "极重",
+    5
+   ],
+   "intro_short": "墨西哥城海拔 2285 米，空气密度比海平面低约 25%。"
+  },
+  {
+   "id": "interlagos",
+   "round": "R20",
+   "name_zh": "圣保罗大奖赛",
+   "name_en": "São Paulo Grand Prix",
+   "circuit_zh": "英特拉格斯赛道",
+   "circuit_en": "Autódromo José Carlos Pace, Interlagos",
+   "country": "巴西",
+   "city": "圣保罗",
+   "flag": "🇧🇷",
+   "dates": "11月06-08日",
+   "sprint": false,
+   "length_km": 4.309,
+   "laps": 71,
+   "corners_total": 15,
+   "archetype": "high-downforce",
+   "kind": "专用赛道（逆时针）",
+   "thumb": "assets/maps/interlagos_thumb.webp",
+   "throttle_pct": 68,
+   "downforce": [
+    "中高",
+    4
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "英特拉格斯是少数逆时针运行的赛道，对车手颈部是反向考验。"
+  },
+  {
+   "id": "las-vegas",
+   "round": "R21",
+   "name_zh": "拉斯维加斯大奖赛",
+   "name_en": "Las Vegas Grand Prix",
+   "circuit_zh": "拉斯维加斯街道赛道",
+   "circuit_en": "Las Vegas Strip Circuit",
+   "country": "美国",
+   "city": "拉斯维加斯",
+   "flag": "🇺🇸",
+   "dates": "11月19-21日",
+   "sprint": false,
+   "length_km": 6.201,
+   "laps": 50,
+   "corners_total": 17,
+   "archetype": "speed-temple",
+   "kind": "街道赛道（午夜低温）",
+   "thumb": "assets/maps/las-vegas_thumb.webp",
+   "throttle_pct": 78,
+   "downforce": [
+    "最低",
+    1
+   ],
+   "braking": [
+    "极重",
+    5
+   ],
+   "intro_short": "拉斯维加斯是全年最冷的赛道之一，午夜气温常常不足 15℃，轮胎很难进入工作温度。"
+  },
+  {
+   "id": "lusail",
+   "round": "R22",
+   "name_zh": "卡塔尔大奖赛",
+   "name_en": "Qatar Grand Prix",
+   "circuit_zh": "罗赛尔国际赛车场",
+   "circuit_en": "Lusail International Circuit",
+   "country": "卡塔尔",
+   "city": "罗赛尔",
+   "flag": "🇶🇦",
+   "dates": "11月27-29日",
+   "sprint": false,
+   "length_km": 5.419,
+   "laps": 57,
+   "corners_total": 16,
+   "archetype": "high-downforce",
+   "kind": "专用赛道（轮胎地狱）",
+   "thumb": "assets/maps/lusail_thumb.webp",
+   "throttle_pct": 68,
+   "downforce": [
+    "高",
+    5
+   ],
+   "braking": [
+    "中等",
+    3
+   ],
+   "intro_short": "罗赛尔是全年对轮胎最狠的赛道：一连串 200-240 km/h 的高速弯持续横撕胎壁，加上沙粒覆盖的路面，抓地力随时变化。"
+  },
+  {
+   "id": "yas-marina",
+   "round": "R23",
+   "name_zh": "阿布扎比大奖赛",
+   "name_en": "Abu Dhabi Grand Prix",
+   "circuit_zh": "亚斯码头赛道",
+   "circuit_en": "Yas Marina Circuit",
+   "country": "阿联酋",
+   "city": "阿布扎比",
+   "flag": "🇦🇪",
+   "dates": "12月04-06日",
+   "sprint": false,
+   "length_km": 5.281,
+   "laps": 58,
+   "corners_total": 16,
+   "archetype": "stop-and-go",
+   "kind": "专用赛道（日落收官战）",
+   "thumb": "assets/maps/yas-marina_thumb.webp",
+   "throttle_pct": 65,
+   "downforce": [
+    "中等",
+    3
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "阿布扎比是赛季收官站，比赛在日落时分开始、夜间结束，地表温度会在正赛里持续下降。"
+  },
+  {
+   "id": "jeddah",
+   "round": "—",
+   "name_zh": "沙特阿拉伯大奖赛（吉达）",
+   "name_en": "Saudi Arabian GP (Jeddah)",
+   "circuit_zh": "吉达滨海赛道",
+   "circuit_en": "Jeddah Corniche Circuit",
+   "country": "沙特阿拉伯",
+   "city": "吉达",
+   "flag": "🇸🇦",
+   "dates": "未列入 2026 赛历",
+   "sprint": false,
+   "length_km": 6.174,
+   "laps": 50,
+   "corners_total": 27,
+   "archetype": "speed-temple",
+   "kind": "市街高速赛道",
+   "thumb": "assets/maps/jeddah_thumb.webp",
+   "throttle_pct": 79,
+   "downforce": [
+    "中低",
+    2
+   ],
+   "braking": [
+    "重度",
+    4
+   ],
+   "intro_short": "吉达是赛历上最快的街道赛道：沿着红海海岸的滨海大道铺开，全油门比例极高，护墙又离赛道非常近。"
+  }
+ ]
+}
