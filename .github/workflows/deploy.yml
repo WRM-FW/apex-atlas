@@ -1,0 +1,78 @@
+name: Deploy ApexAtlas to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # 发布前的质量闸门：路径规则 + 数据一致性。
+  # 仓库还没有站点文件时（例如刚建好的空骨架）整个流水线会跳过，保持绿色。
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      site: ${{ steps.detect.outputs.site }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect site files
+        id: detect
+        run: |
+          if [ -f index.html ] && [ -d data ]; then
+            echo "site=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "site=false" >> "$GITHUB_OUTPUT"
+            echo "No site files in this commit - pipeline will skip."
+          fi
+
+      - if: steps.detect.outputs.site == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - if: steps.detect.outputs.site == 'true'
+        name: Validate site (relative paths, data, assets)
+        run: python tools/check_site.py .
+
+  build:
+    needs: check
+    if: needs.check.outputs.site == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble static bundle
+        run: |
+          mkdir dist
+          cp index.html dist/
+          cp -r css js data assets dist/
+          echo "ApexAtlas · $(find dist -type f | wc -l) files, $(du -sh dist | cut -f1)"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  # main 分支 → 正式发布；Pull Request → 自动生成临时预览地址。
+  # 人工审核发生在合并 PR 这一步：不合并就不会上线。
+  deploy:
+    needs: build
+    if: needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
