@@ -64,11 +64,11 @@ jobs:
         with:
           path: dist
 
-  # main 分支 → 正式发布；Pull Request → 自动生成临时预览地址。
-  # 人工审核发生在合并 PR 这一步：不合并就不会上线。
+  # 部署只在合并后进行：Pull Request 不运行这个任务（人工审核闸门）。
+  # 万一从其他分支手动触发，也用 preview 模式，绝不写生产地址。
   deploy:
     needs: build
-    if: needs.build.result == 'success'
+    if: github.event_name != 'pull_request' && needs.build.result == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -76,3 +76,5 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          preview: ${{ github.ref != 'refs/heads/main' }}
