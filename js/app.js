@@ -489,6 +489,13 @@
       markNav('compare');
       setTitle('赛道对比');
       var chosen = (ids && ids.length ? ids : ['monza', 'monaco', 'suzuka']).slice(0, 3);
+      // 选择框固定为三个：分享链接里不足三条时用未选中的赛道补齐
+      var fallbacks = ['monza', 'monaco', 'suzuka', 'baku', 'silverstone'];
+      while (chosen.length < 3) {
+        var spare = fallbacks.filter(function (x) { return chosen.indexOf(x) < 0; })[0] ||
+          S.tracks.filter(function (t) { return chosen.indexOf(t.id) < 0; })[0].id;
+        chosen.push(spare);
+      }
       var byId = {};
       S.tracks.forEach(function (t) { byId[t.id] = t; });
 
@@ -511,10 +518,7 @@
       }
       function sync() {
         picker.innerHTML = chosen.map(options).join('') +
-          '<button class="fchip" id="add">＋ 再加一条</button>' +
           '<a class="chip" href="#/compare/' + chosen.join(',') + '">生成可分享链接</a>';
-        document.getElementById('add').disabled = chosen.length >= 3;
-        document.getElementById('add').style.opacity = chosen.length >= 3 ? .4 : 1;
         Promise.all(chosen.map(function (id) { return AA.track(id); })).then(function (list) {
           cmp.innerHTML = list.map(col).join('');
         });
@@ -548,11 +552,6 @@
         if (e.target.tagName !== 'SELECT') return;
         chosen[+e.target.dataset.i] = e.target.value;
         sync();
-      });
-      picker.addEventListener('click', function (e) {
-        if (e.target.id !== 'add' || chosen.length >= 3) return;
-        var free = S.tracks.filter(function (t) { return chosen.indexOf(t.id) < 0; })[0];
-        if (free) { chosen.push(free.id); sync(); }
       });
       sync();
     }).catch(fail);
