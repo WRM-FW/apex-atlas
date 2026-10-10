@@ -77,7 +77,7 @@ for tid, t in CONTENT.items():
         sprint=t['sprint'], kind=t['kind'], archetype=t['archetype'],
         length_km=t['length'], laps=t['laps'],
         corners=dict(total=total, left=t['left'], right=t['right'],
-                     guide_total=(15 if tid == 'madring' else total)),
+                     guide_total=total),
         record=(None if not t['record'] else dict(time=t['record'], driver=t['record_who'], year=t['record_year'])),
         metrics=dict(downforce=t['downforce'], throttle_pct=t['throttle'],
                      braking=t['braking'], tyre_wear=t['tyre']),
