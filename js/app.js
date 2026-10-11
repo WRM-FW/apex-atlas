@@ -285,7 +285,7 @@
         return '<div class="spec-grid">' +
             '<div class="spec"><div class="lab">单圈长度</div><div class="val">' + t.length_km.toFixed(3) +
               ' <small>km</small></div><div class="sub">' + t.laps + ' 圈 · 全程约 ' +
-              (t.length_km * t.laps / 1000).toFixed(1) + ' km</div></div>' +
+              (t.length_km * t.laps).toFixed(1) + ' km</div></div>' +
             '<div class="spec"><div class="lab">弯角数量</div><div class="val">' + t.corners.total +
               ' <small>个</small></div><div class="sub">' + esc(lr) + '</div></div>' +
             rec +
@@ -317,7 +317,7 @@
         Array.prototype.forEach.call(document.querySelectorAll('.crow'), function (row) {
           row.classList.toggle('on', gi != null && +row.dataset.g === gi);
         });
-        if (gi == null) { hintPanel(); return; }
+        if (gi == null) { transitionPanel(n); return; }
         var g = t.corner_groups[gi];
         var sec = t.sectors.filter(function (s) { return s.id === g.sector; })[0];
         var order = t.corner_groups.map(function (x, i) { return i; });
@@ -341,6 +341,19 @@
         panel.innerHTML = '<div class="panel-kicker">怎么用</div><h3>点一个弯角试试</h3>' +
           '<p>地图上的每个数字都是一个可点击的弯角。选中后会在这里显示它的位置、所属赛段和解析。</p>' +
           '<p class="panel-hint">这一站共有 ' + t.corner_groups.length + ' 组弯角解析、' + t.hotspots.length + ' 个编号弯角。</p>';
+      }
+      function transitionPanel(n) {
+        var h = map.byCode[n];
+        if (!h) { hintPanel(); return; }
+        var sec = t.sectors.filter(function (s) { return s.id === h.sector; })[0];
+        panel.innerHTML = '<div class="panel-kicker">弯角定位' + (sec ? ' · Sector ' + sec.id.slice(1) : '') + '</div>' +
+          '<h3>T' + esc(h.n) + ' · 未单列解析的弯角</h3>' +
+          '<div class="codes"><span class="chip solid ' + String(h.sector).toLowerCase() + '">T' + esc(h.n) + '</span></div>' +
+          '<p>这个编号在地图上独立标注，也已为你点亮，但本站的逐弯解析以“弯角组”为单位，它没有落进任何一组的文字卡片里，' +
+          '所以这里只显示它的坐标与所属赛段，不额外编造技术结论。</p>' +
+          (sec ? '<p class="panel-hint">所在赛段：Sector ' + sec.id.slice(1) + ' · ' + esc(sec.title) +
+                 '<br>' + esc(sec.text) + '</p>' : '') +
+          '<p class="panel-hint">用键盘 ← → 可以按顺序跳过整圈 ' + t.hotspots.length + ' 个编号弯角，或在下方列表挑选有解析的 ' + t.corner_groups.length + ' 组。</p>';
       }
       function jumpGroup(gi) {
         var g = t.corner_groups[gi];
@@ -583,7 +596,7 @@
           'hotspots 里的 x/y 是弯角气泡中心相对图片宽高的百分比，corner_groups 用 codes 数组把弯角编号和文字对应起来。' +
           '最后在 <code>data/season.json</code> 的 tracks 列表补一条索引即可。</div>' +
           '<div class="note blue"><b>坐标怎么来的</b><br>' +
-          '本项目的弯角坐标由 <code>_tools/</code> 下的脚本从地图自动识别（数字气泡定位），' +
+          '本项目的弯角坐标由 <code>tools/</code> 下的脚本从地图自动识别（数字气泡定位），' +
           '再逐站核对编号连续性后生成。仓库保留了脚本，方便你换新地图时重新提取。</div></div></section>';
     }).catch(fail);
   }
