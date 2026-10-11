@@ -16,8 +16,13 @@ for mod in ('content_a', 'content_b', 'content_c', 'content_d'):
 S = importlib.import_module('content_season')
 
 
-def parse_cs(cs):
-    """'T1-T2' -> ['1','2'];  'T20A' -> ['20A'];  'T13-T15' -> ['13','14','15']"""
+def parse_cs(cs, available_codes=None):
+    """'T1-T2' -> ['1','2'];  'T20A' -> ['20A'];  'T13-T15' -> ['13','14','15']
+
+    With available_codes, a plain numeric range also picks up the letter-suffixed
+    sub-corners that sit inside it (e.g. madring 5A within T4-T6, 20A within T20-T22),
+    so no map marker is left orphaned.
+    """
     codes = [c.strip().lstrip('Tt') for c in cs.split('-')]
     if len(codes) == 1:
         return [codes[0]]
@@ -26,7 +31,15 @@ def parse_cs(cs):
     nb, sb = int(re.match(r'\d+', b).group()), b[len(re.match(r'\d+', b).group()):]
     if sa or sb:
         return [a, b]
-    return [str(i) for i in range(na, nb + 1)]
+    out = [str(i) for i in range(na, nb + 1)]
+    if available_codes:
+        extra = [c for c in available_codes
+                 if c not in out and not c.isdigit()
+                 and re.match(r'\d+', c) and na <= int(re.match(r'\d+', c).group()) <= nb]
+        extra.sort(key=lambda c: (int(re.match(r'\d+', c).group()), c[len(re.match(r'\d+', c).group()):]))
+        out += extra
+        out.sort(key=lambda c: (int(re.match(r'\d+', c).group()), c[len(re.match(r'\d+', c).group()):]))
+    return out
 
 
 os.makedirs(os.path.join(SITE, 'data', 'tracks'), exist_ok=True)
@@ -51,7 +64,7 @@ for tid, t in CONTENT.items():
     # corner-analysis groups
     groups = []
     for g in t['corners_analysis']:
-        cs_codes = parse_cs(g['cs'])
+        cs_codes = parse_cs(g['cs'], codes)
         missing = [c for c in cs_codes if c not in by_code]
         if missing:
             warnings.append('%s: prose refers to corners absent from map: %s (%s)' % (tid, missing, g['cs']))
