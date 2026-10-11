@@ -655,10 +655,10 @@
    "dates": "9月11-13日",
    "sprint": false,
    "length_km": 5.474,
-   "laps": 56,
+   "laps": 57,
    "corners_total": 24,
    "archetype": "street-precision",
-   "kind": "新建市街赛道（赛季首秀）",
+   "kind": "新建市街赛道（2026 首秀）",
    "thumb": "assets/maps/madring_thumb.webp",
    "throttle_pct": 62,
    "downforce": [
@@ -669,7 +669,7 @@
     "重度",
     4
    ],
-   "intro_short": "2026 年西班牙大奖赛移师马德里，围绕 IFEMA 国际会展中心的新建市街赛道是本赛季最大的未知数。"
+   "intro_short": "2026 年西班牙大奖赛移师马德里，围绕 IFEMA 国际会展中心新建的市街赛道已在 9 月 11 至 13 日完成历史首秀。"
   },
   {
    "id": "baku",
