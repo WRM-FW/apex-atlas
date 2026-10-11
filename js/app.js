@@ -280,7 +280,7 @@
             '</div><div class="sub">' + esc(t.record.driver) + ' · ' + t.record.year + '</div></div>'
           : '<div class="spec"><div class="lab">圈速纪录</div><div class="val"><small>指南未收录</small></div>' +
             '<div class="sub">本站无官方数据章节</div></div>';
-        var lr = (t.corners.left == null) ? '指南按规划口径记 20 弯' :
+        var lr = (t.corners.left == null) ? ('地图按 ' + t.corners.total + ' 个编号弯绘制（官方未公布左右分配）') :
           (t.corners.left + ' 左 / ' + t.corners.right + ' 右');
         return '<div class="spec-grid">' +
             '<div class="spec"><div class="lab">单圈长度</div><div class="val">' + t.length_km.toFixed(3) +
