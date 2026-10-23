@@ -87,7 +87,7 @@
             '</div>' +
             '<div class="cols-2" style="grid-template-columns:1fr">' +
               '<div class="note blue"><b>第一次看 F1？</b> 先花三分钟弄懂 2026 年的三个新变化：' +
-              '主动空气动力学、电机功率翻倍、超车模式取代 DRS。' +
+              '主动空气动力学、电机功率提升至近三倍、超车模式取代 DRS。' +
               '<div style="margin-top:10px"><a class="chip solid" style="background:var(--s2)" href="#/guide">阅读新手指南 →</a></div></div>' +
             '</div>' +
           '</div>' +
@@ -102,6 +102,7 @@
 
         '<section>' +
           '<div class="sec-head"><div><span class="eyebrow">Step 2</span><h2>2026 赛季 24 张赛道地图</h2></div></div>' +
+          '<p class="map-hint">' + S.tracks.length + ' 张地图 = 本赛季 ' + S.season.rounds + ' 站大奖赛 + 吉达 1 张。吉达未列入 2026 赛历，作为高速街道赛道的范例保留，所以可点击弯角总数 ' + corners + ' 个里包含它的弯角。</p>' +
           '<div class="filters" id="filters">' +
             '<button class="fchip" data-f="all" aria-pressed="true">全部</button>' +
             Object.keys(ARCH).map(function (k) {
@@ -228,13 +229,14 @@
         '</section>' +
 
         '<section><div class="sec-head"><div><span class="eyebrow">Data</span><h2>赛道规格与负荷</h2></div></div>' +
+          (t.round === '—' ? '<div class="note" style="margin-bottom:14px">未列入 2026 赛历，以下为这条赛道本身的规格数据，不对应当前赛季的比赛周末。</div>' : '') +
           specBlock(t) + '</section>' +
 
         '<section><div class="sec-head"><div><span class="eyebrow">Sectors</span><h2>三大赛段拆解</h2></div></div>' +
           '<div class="sectors">' + t.sectors.map(function (s, i) {
             return '<div class="sector" style="--sc:var(--s' + (i + 1) + ')">' +
               '<h3>Sector ' + (i + 1) + ' · ' + esc(s.title) + '</h3>' +
-              '<div class="rng">T' + s.rng[0] + ' — T' + s.rng[1] + ' · 共 ' + s.corners.length + ' 个弯角</div>' +
+              '<div class="rng">' + rngLabel(s) + '</div>' +
               '<p>' + esc(s.text) + '</p>' +
               '<div style="margin-top:12px"><button class="fchip" data-jump="' + s.id + '">在地图上高亮</button></div>' +
             '</div>';
@@ -273,6 +275,14 @@
         }).join('');
       }
 
+      /* 赛段区间标签：带字母后缀的子弯（如 5A、20A）不在 rng 的整数区间里，单独注明 */
+      function rngLabel(s) {
+        var extra = s.corners.filter(function (c) { return !/^\d+$/.test(c); });
+        return 'T' + s.rng[0] + ' — T' + s.rng[1] +
+          (extra.length ? '（含 ' + extra.join('、') + '）' : '') +
+          ' · 共 ' + s.corners.length + ' 个弯角';
+      }
+
       function specBlock(t) {
         var m = t.metrics;
         var rec = t.record
@@ -284,13 +294,12 @@
           (t.corners.left + ' 左 / ' + t.corners.right + ' 右');
         return '<div class="spec-grid">' +
             '<div class="spec"><div class="lab">单圈长度</div><div class="val">' + t.length_km.toFixed(3) +
-              ' <small>km</small></div><div class="sub">' + t.laps + ' 圈 · 全程约 ' +
-              (t.length_km * t.laps).toFixed(1) + ' km</div></div>' +
+              ' <small>km</small></div><div class="sub">' + t.laps + ' 圈</div></div>' +
             '<div class="spec"><div class="lab">弯角数量</div><div class="val">' + t.corners.total +
               ' <small>个</small></div><div class="sub">' + esc(lr) + '</div></div>' +
             rec +
             '<div class="spec"><div class="lab">正赛距离</div><div class="val">' +
-              Math.round(t.length_km * t.laps) + ' <small>km</small></div><div class="sub">' + esc(t.dates) + '</div></div>' +
+              (t.length_km * t.laps).toFixed(1) + ' <small>km</small></div><div class="sub">' + esc(t.dates) + '</div></div>' +
           '</div>' +
           '<div class="meters" style="margin-top:16px">' +
             meter('全油门比例', '<div class="bar s3"><i style="width:' + m.throttle_pct + '%"></i></div>' +
@@ -514,13 +523,17 @@
 
       view.innerHTML = '' +
         '<div class="hero fade" style="padding-bottom:0"><span class="eyebrow">Compare</span>' +
-        '<h1>把两三站放在一起看</h1>' +
-        '<p class="lede" style="margin-top:12px">同一条赛道在不同规则下的取舍完全不同。选 2-3 站，' +
+        '<h1>把三站放在一起看</h1>' +
+        '<p class="lede" style="margin-top:12px">同一条赛道在不同规则下的取舍完全不同。选 3 站，' +
         '直接比较长度、弯角数量与三项负荷，理解“为什么每站的设定不一样”。</p></div>' +
         '<section style="margin-top:22px"><div class="picker" id="picker"></div><div class="cmp" id="cmp"></div></section>';
 
       var picker = document.getElementById('picker');
       var cmp = document.getElementById('cmp');
+      // 柱长按全部赛道的当前最大值归一化，避免数据变动后写死的分母失真
+      var maxLen = Math.max.apply(null, S.tracks.map(function (t) { return t.length_km; }));
+      var maxCorners = Math.max.apply(null, S.tracks.map(function (t) { return t.corners_total; }));
+      var maxLaps = Math.max.apply(null, S.tracks.map(function (t) { return t.laps; }));
 
       function options(sel, i) {
         return '<select data-i="' + i + '" aria-label="第 ' + (i + 1) + ' 条赛道">' +
@@ -536,19 +549,15 @@
           cmp.innerHTML = list.map(col).join('');
         });
       }
-      function maxOf(key) {
-        return Math.max.apply(null, list_cache.map(function (t) { return key(t); }));
-      }
-      var list_cache = [];
       function col(t) {
         return '<div class="cmp-col"><div class="top"><a href="#/track/' + t.id + '">' +
           '<img src="' + AA.url(t.map.thumb) + '" alt="' + esc(t.circuit_zh) + '"></a></div>' +
           '<div class="nm"><h3>' + t.flag + ' ' + esc(t.circuit_zh) + '</h3>' +
           '<div class="tcard-sub">' + esc(t.round) + ' · ' + esc(t.kind) + '</div></div>' +
           '<dl>' +
-          row('单圈长度', t.length_km.toFixed(3) + ' km', t.length_km / 7.004 * 100, 'var(--s3)') +
-          row('弯角数', t.corners.total + ' 个', t.corners.total / 27 * 100, 'var(--s1)') +
-          row('比赛圈数', String(t.laps), t.laps / 78 * 100, 'var(--s2)') +
+          row('单圈长度', t.length_km.toFixed(3) + ' km', t.length_km / maxLen * 100, 'var(--s3)') +
+          row('弯角数', t.corners.total + ' 个', t.corners.total / maxCorners * 100, 'var(--s1)') +
+          row('比赛圈数', String(t.laps), t.laps / maxLaps * 100, 'var(--s2)') +
           row('全油门', t.metrics.throttle_pct + '%', t.metrics.throttle_pct, 'var(--s3)') +
           row('下压力', esc(t.metrics.downforce[0]), t.metrics.downforce[1] * 20, 'var(--s1)') +
           row('制动负荷', esc(t.metrics.braking[0]), t.metrics.braking[1] * 20, 'var(--straight)') +
@@ -563,7 +572,11 @@
       }
       picker.addEventListener('change', function (e) {
         if (e.target.tagName !== 'SELECT') return;
-        chosen[+e.target.dataset.i] = e.target.value;
+        var i = +e.target.dataset.i;
+        var v = e.target.value;
+        var j = chosen.indexOf(v);
+        if (j >= 0 && j !== i) chosen[j] = chosen[i];   // 选到已被别的列占用的赛道：两列互换，避免重复
+        chosen[i] = v;
         sync();
       });
       sync();
