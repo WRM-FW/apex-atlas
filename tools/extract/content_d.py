@@ -161,13 +161,13 @@ TRACKS = {
 
 'lusail': dict(
     round='R22', zh='卡塔尔大奖赛', en='Qatar Grand Prix',
-    circuit_zh='罗赛尔国际赛车场', circuit_en='Lusail International Circuit',
-    country='卡塔尔', city='罗赛尔', flag='🇶🇦', dates='11月27-29日', sprint=False,
+    circuit_zh='卢赛尔国际赛车场', circuit_en='Lusail International Circuit',
+    country='卡塔尔', city='卢赛尔', flag='🇶🇦', dates='11月27-29日', sprint=False,
     length=5.419, laps=57, left=6, right=10,
     record='1:24.319', record_who='M. Verstappen', record_year=2023,
     downforce=('高', 5), throttle=68, braking=('中等', 3), tyre=('极高', 5),
     archetype='high-downforce', kind='专用赛道（轮胎地狱）',
-    intro='罗赛尔是全年对轮胎负荷最为严苛的赛道之一：一连串时速 200-240 km/h 的高速弯持续施加极高的侧向载荷，加之沙漠吹来的沙粒令路面抓地力捉摸不定，车手体能与轮胎结构刚性都会被推向极限。',
+    intro='卢赛尔是全年对轮胎负荷最为严苛的赛道之一：一连串时速 200-240 km/h 的高速弯持续施加极高的侧向载荷，加之沙漠吹来的沙粒令路面抓地力捉摸不定，车手体能与轮胎结构刚性都会被推向极限。',
     sectors=[
         dict(id='S1', rng=[1, 5], title='长直道与中速回环',
              text='1 公里长的主直道后 T1 重刹；随后进入极其宽阔、流动性极佳的 T2-T5 中速组合弯。'),
